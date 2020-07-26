@@ -39,10 +39,16 @@ export default {
     components: {
         Editor
     },
+    props: {
+        articles: {
+            type: String,
+            default: ''
+        }
+    },
     watch: {
         content(newVal, oldVal) {
             return this.$emit("updata", newVal);
-        }
+        },
     },
     data() {
         return {
@@ -62,10 +68,10 @@ export default {
                 language: 'zh_CN', //中文语言
                 language_url: "/tinymce/langs/zh_CN.js", //语言包
                 skin_url: "/tinymce/skins/ui/oxide", //主题色
-                plugins: "link template lists preview advlist insertdatetime emoticons codesample charmap autolink autosave anchor fullscreen image code help table wordcount ", // 插件列表
+                plugins: "link template lists preview advlist insertdatetime emoticons codesample charmap autolink autosave anchor fullscreen image code help table wordcount", // 插件列表
                 // 工具栏列表
-                toolbar1: "codesample code undo redo cut | alignleft aligncenter alignright alignjustify outdent indent |insertdatetime copy paste image preview |forecolor backcolor bold italic underline strikethrough link anchor  restoredraft |blockquote subscript superscript removeformat  emoticons table fullscreen",
-                toolbar2: `charmap  help bullist numlist | styleselect formatselect fontselect fontsizeselect`,
+                toolbar1: "codesample code undo redo cut | alignleft aligncenter alignright alignjustify outdent indent |insertdatetime copy paste image preview |forecolor backcolor bold italic underline strikethrough link anchor  restoredraft |blockquote subscript superscript removeformat  emoticons table fullscreen|charmap  help bullist numlist",
+                toolbar2: `styleselect formatselect fontselect fontsizeselect|`,
                 codesample_global_prismjs: true, //全局使用代码高亮js
                 content_css: "/css/prism.css", //代码高亮css
                 codesample_languages: [{
@@ -133,6 +139,7 @@ export default {
                     let formData = new FormData();
                     const imgFile = blobInfo.blob();
                     formData.append("file", imgFile);
+                    formData.append('fileType', 'detail')
                     upLoadFile("/upload/addImg", formData)
                         .then(res => {
                             if (res.success) {
@@ -145,7 +152,7 @@ export default {
                             }
                         })
                         .catch(err => {
-                            console.log(err); 
+                            console.log(err);
                         });
                 }
             }
