@@ -10,7 +10,7 @@
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.1",
     "aplayer": "^1.10.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-plugin-prismjs": "^2.0.1",
     "compression-webpack-plugin": "^4.0.0",
     "core-js": "^3.6.5",
